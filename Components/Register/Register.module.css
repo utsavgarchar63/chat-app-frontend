@@ -1,0 +1,42 @@
+.registerCard {
+  /* width: 350px; */
+  position: relative !important;
+}
+
+
+.phone_input {
+  font-size: 1rem;
+  z-index: 100;
+  margin: 10px 0;
+}
+.phone_input input {
+  width: 100% !important;
+  margin: 10px 0;
+  font-size: 1rem;
+  padding: 25px;
+}
+.password_visible_eye i {
+  font-size: 20px;
+  opacity: 0.8;
+}
+@media (max-width: 768px) {
+  .registerCard {
+    width: 100%;
+  }
+}
+
+.password_icon {
+  position: absolute;
+  right: 37px;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.invalid_feedback {
+  position: absolute;
+  top: calc(100% + 5px); 
+  width: 100%;
+}
