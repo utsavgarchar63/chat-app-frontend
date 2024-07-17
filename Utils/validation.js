@@ -28,6 +28,9 @@ export const validateForm = (name, value, formData) => {
     case "password":
       errors.password = validatePassword(value);
       break;
+    case "gender":
+      errors.gender = value ? "" : "Gender is required";
+      break;
     default:
       break;
   }

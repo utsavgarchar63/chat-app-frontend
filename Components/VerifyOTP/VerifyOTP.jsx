@@ -57,7 +57,6 @@ export default function VerifyOTP() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const concatenatedString = otp.join("");
-    console.log(concatenatedString);
     try {
       const res = await ApiPost(
         "/user/verify-otp",
@@ -66,12 +65,16 @@ export default function VerifyOTP() {
           "Content-Type": "application/json",
         }
       );
-      if (res.responce.data?.success) {
-        toast.success(res.responce.data?.message, {
+      console.log(res.data?.success, res.data?.message, "<<<<<<<<<<");
+      if (res.data?.success) {
+        toast.success(res.data?.message, {
           duration: 4000,
           position: "top-right",
         });
-        router.push("/login");
+        router.push({
+          pathname: "/update-avatar",
+          query: { email: res.data?.email },
+        });
       }
     } catch (err) {
       toast.error(err?.response?.data?.message || "OTP verification failed", {

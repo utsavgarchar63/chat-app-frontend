@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { NextUIProvider } from "@nextui-org/react";
 import Head from "next/head";
 import "../styles/global.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -30,23 +31,24 @@ export default function MyApp({ Component, pageProps }) {
   }, []);
   return (
     <>
-      <Head>
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+      <NextUIProvider>
+        <Head>
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+          />
+        </Head>
+        <Component {...pageProps} />
+        <Toaster
+          position="top-center"
+          toastOptions={{
+            style: {
+              background: "#363636",
+              color: "#ffff",
+            },
+          }}
         />
-       
-      </Head>
-      <Component {...pageProps} />
-      <Toaster
-        position="top-center"
-        toastOptions={{
-          style: {
-            background: "#363636",
-            color: "#ffff",
-          },
-        }}
-      />
+      </NextUIProvider>
     </>
   );
 }

@@ -8,7 +8,6 @@ export default function Chat() {
   const [newMessage, setNewMessage] = useState("");
 
   useEffect(() => {
-    // Request the message history after establishing the socket connection
     socket.emit("getMessageHistory");
 
     socket.on("messageHistory", (history) => {

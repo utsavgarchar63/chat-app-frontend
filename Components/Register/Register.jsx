@@ -1,12 +1,9 @@
-import Head from "next/head";
 import RegisterForm from "../Auth/RegisterForm";
 import { Container, Row, Col } from "react-bootstrap";
+
 const Register = () => {
   return (
     <>
-      <Head>
-        <title>Register</title>
-      </Head>
       <svg
         className="wave"
         xmlns="http://www.w3.org/2000/svg"
