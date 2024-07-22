@@ -41,9 +41,6 @@ export default function Login() {
   };
   return (
     <>
-      <Head>
-        <title>Register</title>
-      </Head>
       <div>
         <svg
           className={styles.wave}

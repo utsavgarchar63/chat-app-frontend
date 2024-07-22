@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import styles from "./VerifyOTP.module.css";
 import { Container, Row, Col, Card } from "react-bootstrap";
@@ -73,7 +73,7 @@ export default function VerifyOTP() {
         });
         router.push({
           pathname: "/update-avatar",
-          query: { email: res.data?.email },
+          query: { id: res.data?.id },
         });
       }
     } catch (err) {
@@ -87,9 +87,7 @@ export default function VerifyOTP() {
   };
   return (
     <>
-      <Head>
-        <title>Register</title>
-      </Head>
+     
       <svg
         className="wave"
         xmlns="http://www.w3.org/2000/svg"
