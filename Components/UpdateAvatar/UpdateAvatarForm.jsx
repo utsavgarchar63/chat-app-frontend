@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
-import { Container, Row, Col } from "react-bootstrap";
-import "react-loading-skeleton/dist/skeleton.css";
+import { Container, Row, Col, Button } from "react-bootstrap";
 import { toast } from "react-hot-toast";
 import { ApiGet, ApiPut } from "../../Helper/APIData";
 
@@ -63,11 +61,10 @@ export default function UpdateAvatarForm() {
   const fetchAvatars = (gender) => {
     const ids = getRandomIds(avatarIds[gender]);
     const urls = ids.map((id) => `https://avatar.iran.liara.run/public/${id}`);
-    setTimeout(() => {
-      setAvatarUrls(urls);
-      setLoading(false);
-    }, 1000);
+    setAvatarUrls(urls);
+    setLoading(false);
   };
+
   const handleAvatarClick = (url) => {
     setSelectedAvatar(url);
   };
@@ -78,9 +75,9 @@ export default function UpdateAvatarForm() {
         const response = await ApiPut(`/user/update-user-avatar`, {
           avatarPath: selectedAvatar,
         });
-        console.log(response?.data)
+        console.log(response?.data);
         if (response?.data?.success) {
-          toast.success(res.data?.message, {
+          toast.success(response.data?.message, {
             duration: 4000,
             position: "top-right",
             icon: "📧",
@@ -95,96 +92,71 @@ export default function UpdateAvatarForm() {
       alert("Please select an avatar.");
     }
   };
+
   return (
-    <Container fluid>
+    <Container fluid className="update-avatar-form">
       <Row className="justify-content-center">
-        <SkeletonTheme baseColor="#202020" highlightColor="#444">
-          {loading
-            ? Array.from({ length: 4 }).map((_, index) => (
-                <Col
-                  key={index}
-                  xs={10}
-                  sm={4}
-                  md={3}
-                  lg={2}
-                  className="d-flex justify-content-center mb-4"
-                >
-                  <Skeleton
-                    circle
-                    height={200}
-                    width={200}
-                    className="skeleton-loader"
-                  />
-                </Col>
-              ))
-            : avatarUrls.map((url, index) => (
-                <Col
-                  key={index}
-                  xs={10}
-                  sm={4}
-                  md={3}
-                  lg={2}
-                  className="d-flex justify-content-center mb-4"
-                >
-                  <img
-                    src={url}
-                    alt={`Avatar ${index}`}
-                    className="avatar-img"
-                  />
-                </Col>
-              ))}
-        </SkeletonTheme>
-        <style jsx>{`
-          .skeleton-loader {
-            border-radius: 50%;
-            width: 200px;
-            height: 200px;
-            animation: skeleton-loading 1.5s infinite ease-in-out;
-          }
-
-          .avatar-img {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-          }
-
-          @keyframes skeleton-loading {
-            0% {
-              background-position: -200% 0;
-            }
-            100% {
-              background-position: 200% 0;
-            }
-          }
-
-          @media (max-width: 576px) {
-            .avatar-img {
-              width: 120px;
-              height: 120px;
-            }
-            .skeleton-loader {
-              width: 120px !important;
-              height: 120px !important;
-            }
-          }
-
-          @media (max-width: 360px) {
-            .avatar-img {
-              width: 100px;
-              height: 100px;
-            }
-
-            .skeleton-loader {
-              width: 100px !important;
-              height: 100px !important;
-            }
-          }
-        `}</style>
+        {avatarUrls.map((url, index) => (
+          <Col
+            key={index}
+            xs={6}
+            sm={4}
+            md={3}
+            lg={2}
+            className="d-flex justify-content-center mb-4"
+          >
+            <img
+              src={url}
+              alt={`Avatar ${index}`}
+              className="avatar-img"
+              onClick={() => handleAvatarClick(url)}
+              style={{
+                cursor: "pointer",
+                border:
+                  selectedAvatar === url ? "3px solid rgb(80 0 202)" : "none",
+                padding: selectedAvatar === url ? "5px" : "0",
+                transition: "border-color 0.2s, padding 0.3s",
+              }}
+            />
+          </Col>
+        ))}
       </Row>
       <div className="mt-4 d-flex justify-content-center">
-        <button className="button">Update Avatar</button>
+        <Button variant="primary" onClick={handleUpdateAvatar}>
+          Update Avatar
+        </Button>
       </div>
+      <style jsx>{`
+        .avatar-img {
+          width: 100%;
+          max-width: 200px;
+          height: auto;
+          border-radius: 50%;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+          transition: border 0.3s ease;
+        }
+
+        @media (max-width: 576px) {
+          .avatar-img {
+            max-width: 120px;
+          }
+        }
+
+        @media (max-width: 360px) {
+          .avatar-img {
+            max-width: 100px;
+          }
+        }
+
+        .update-avatar-form {
+          padding: 20px;
+        }
+
+        .update-avatar-form button {
+          width: 100%;
+          max-width: 200px;
+        }
+      `}</style>
     </Container>
   );
 }
