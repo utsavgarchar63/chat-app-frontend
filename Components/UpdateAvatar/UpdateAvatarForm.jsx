@@ -72,21 +72,24 @@ export default function UpdateAvatarForm() {
   const handleUpdateAvatar = async () => {
     if (selectedAvatar) {
       try {
-        const response = await ApiPut(`/user/update-user-avatar`, {
-          avatarPath: selectedAvatar,
-        });
-        console.log(response?.data);
-        if (response?.data?.success) {
-          toast.success(response.data?.message, {
+        const response = await ApiPut(
+          `/user/update-user-avatar?id=${query?.id}`,
+          {
+            avatarPath: selectedAvatar,
+          }
+        );
+        if (response?.data?.success === true) {
+          toast.success(response?.data?.message, {
             duration: 4000,
             position: "top-right",
-            icon: "📧",
           });
-        } else {
-          console.error(`Failed to update avatar: ${response.status}`);
+          router.push(`/login`);
         }
       } catch (error) {
-        console.error("Error updating avatar:", error);
+        toast.error(error?.response?.data?.message, {
+          duration: 4000,
+          position: "top-right",
+        });
       }
     } else {
       alert("Please select an avatar.");

@@ -1,4 +1,3 @@
-
 import UpdateAvatarForm from "./UpdateAvatarForm";
 export default function UpdateAvatar() {
   return (

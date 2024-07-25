@@ -139,7 +139,7 @@ export default function RegisterForm() {
 
   return (
     <>
-      <Card className="p-lg-4 shadow-lg p-3 mb-5 bg-body rounded">
+      <Card className="p-lg-4  shadow-lg p-3 mb-5 bg-body rounded">
         <div className={styles.registerCard}>
           <h3 className="mb-3">Register</h3>
           <h6 className="mb-4">

@@ -7,28 +7,6 @@ import "react-phone-input-2/lib/style.css";
 import { Toaster } from "react-hot-toast";
 
 export default function MyApp({ Component, pageProps }) {
-  useEffect(() => {
-    const handleFocus = (event) => {
-      document.body.style.overflow = "hidden";
-    };
-
-    const handleBlur = (event) => {
-      document.body.style.overflow = "auto";
-    };
-
-    const inputs = document.querySelectorAll("input, textarea");
-    inputs.forEach((input) => {
-      input.addEventListener("focus", handleFocus);
-      input.addEventListener("blur", handleBlur);
-    });
-
-    return () => {
-      inputs.forEach((input) => {
-        input.removeEventListener("focus", handleFocus);
-        input.removeEventListener("blur", handleBlur);
-      });
-    };
-  }, []);
   return (
     <>
       <NextUIProvider>

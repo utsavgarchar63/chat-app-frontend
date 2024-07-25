@@ -3,7 +3,6 @@
   position: relative !important;
 }
 
-
 .phone_input {
   font-size: 1rem;
   z-index: 100;
@@ -37,6 +36,7 @@
 
 .invalid_feedback {
   position: absolute;
-  top: calc(100% + 5px); 
+  top: calc(100% + 5px);
   width: 100%;
 }
+
