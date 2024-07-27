@@ -26,26 +26,19 @@ export default function Login() {
       });
       if (res.data?.success) {
         toast.success(res.data?.message, {
+          duration: 4000,
           position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          icon: "🔓",
+          icon: "📧",
         });
-        router.push("/");
+        router.push("/chat");
       }
     } catch (err) {
-     
-      toast.error(err?.response?.data?.message, {
+      toast.error(err.response.data?.message, {
         duration: 4000,
         position: "top-right",
       });
     }
   };
-
   return (
     <>
       <div>
@@ -69,7 +62,7 @@ export default function Login() {
           <Card className="p-5 shadow-lg p-3 mb-5 bg-body rounded">
             <div className={styles.loginCard}>
               <h3 className="mb-4">Login</h3>
-              <Form onSubmit={handleSubmit}>
+              <Form>
                 <FloatingLabel
                   controlId="floatingInput"
                   label="Email address"
