@@ -81,6 +81,7 @@ export default function UpdateAvatarForm() {
         if (response?.data?.success === true) {
           toast.success(response?.data?.message, {
             duration: 4000,
+            icon: "🎉",
             position: "top-right",
           });
           router.push(`/login`);
