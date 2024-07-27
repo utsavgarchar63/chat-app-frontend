@@ -79,9 +79,19 @@ export default function UpdateAvatarForm() {
           }
         );
         if (response?.data?.success === true) {
+          // toast.success(response?.data?.message, {
+          //   duration: 4000,
+          //   position: "top-right",
+          // });
           toast.success(response?.data?.message, {
-            duration: 4000,
             position: "top-right",
+            icon: "🎉",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
           });
           router.push(`/login`);
         }
@@ -92,7 +102,10 @@ export default function UpdateAvatarForm() {
         });
       }
     } else {
-      alert("Please select an avatar.");
+      toast.error("Please select an avatar.", {
+        duration: 4000,
+        position: "top-right",
+      });
     }
   };
 
