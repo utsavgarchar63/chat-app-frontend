@@ -9,6 +9,7 @@ const defaultHeaders = {
   api_key: true,
 };
 export const ApiPostNoAuth = (type, userData) => {
+  console.log(BaseURL);
   return new Promise((resolve, reject) => {
     axios
       .post(
