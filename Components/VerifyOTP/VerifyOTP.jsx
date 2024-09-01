@@ -59,7 +59,7 @@ export default function VerifyOTP() {
     const concatenatedString = otp.join("");
     try {
       const res = await ApiPost(
-        "/user/verify-otp",
+        "/user/verify",
         { email, otp: concatenatedString },
         {
           "Content-Type": "application/json",

@@ -47,7 +47,7 @@ export default function UpdateAvatarForm() {
     try {
       const response = await ApiGet(`/user/get-user?id=${id}`);
       if (response?.data?.success) {
-        const userGender = response.data.data.vGender;
+        const userGender = response?.data?.vGender;
         const genderKey = userGender === "male" ? "male" : "female";
         fetchAvatars(genderKey);
       } else {
@@ -93,7 +93,11 @@ export default function UpdateAvatarForm() {
         });
       }
     } else {
-      alert("Please select an avatar.");
+      // alert("Please select an avatar.");
+      toast.error("Please select an avatar", {
+        duration: 4000,
+        position: "top-right",
+      });
     }
   };
 
@@ -109,6 +113,7 @@ export default function UpdateAvatarForm() {
             lg={2}
             className="d-flex justify-content-center mb-4"
           >
+            {console.log(url)}
             <img
               src={url}
               alt={`Avatar ${index}`}
@@ -126,9 +131,9 @@ export default function UpdateAvatarForm() {
         ))}
       </Row>
       <div className="mt-4 d-flex justify-content-center">
-        <Button variant="primary" onClick={handleUpdateAvatar}>
+        <button className="button" onClick={handleUpdateAvatar}>
           Update Avatar
-        </Button>
+        </button>
       </div>
       <style jsx>{`
         .avatar-img {
