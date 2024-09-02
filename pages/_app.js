@@ -11,7 +11,7 @@ export default function MyApp({ Component, pageProps }) {
     <>
       <NextUIProvider>
         <Head>
-          <title>Chat App</title>
+          <title>Ecommerce App</title>
           <meta
             name="viewport"
             content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"

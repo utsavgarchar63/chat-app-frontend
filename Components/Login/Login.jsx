@@ -3,7 +3,7 @@ import { useState, React, FormEvent } from "react";
 import styles from "./Login.module.css";
 import Link from "next/link";
 import { toast } from "react-hot-toast";
-import { useRouter } from "next/router";
+import { setToken } from "../../Utils/auth.util"
 import { ApiPost } from "../../Helper/APIData";
 import { Card, Container, FloatingLabel, Form } from "react-bootstrap";
 export default function Login() {
@@ -30,7 +30,7 @@ export default function Login() {
           position: "top-right",
           icon: "📧",
         });
-        router.push("/chat");
+        router.push("/");
       }
     } catch (err) {
       toast.error(err.response.data?.message, {
