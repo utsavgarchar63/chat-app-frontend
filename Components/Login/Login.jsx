@@ -3,10 +3,12 @@ import { useState, React, FormEvent } from "react";
 import styles from "./Login.module.css";
 import Link from "next/link";
 import { toast } from "react-hot-toast";
+import { useRouter } from 'next/router';
 import { setToken } from "../../Utils/auth.util"
 import { ApiPost } from "../../Helper/APIData";
 import { Card, Container, FloatingLabel, Form } from "react-bootstrap";
 export default function Login() {
+  const router = useRouter();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -28,12 +30,14 @@ export default function Login() {
         toast.success(res.data?.message, {
           duration: 4000,
           position: "top-right",
-          icon: "📧",
+          icon: "🎉",
         });
-        router.push("/");
+        setToken(res.data.token)
+        router.push("/dashboard");
       }
     } catch (err) {
-      toast.error(err.response.data?.message, {
+      console.log(err)
+      toast.error(err.data?.message, {
         duration: 4000,
         position: "top-right",
       });
