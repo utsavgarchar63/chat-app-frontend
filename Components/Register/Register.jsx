@@ -1,4 +1,4 @@
-import RegisterForm from "../Auth/RegisterForm";
+import RegisterForm from "./RegisterForm";
 import { Container, Row, Col } from "react-bootstrap";
 
 const Register = () => {

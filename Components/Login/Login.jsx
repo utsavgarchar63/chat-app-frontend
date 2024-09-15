@@ -36,8 +36,7 @@ export default function Login() {
         router.push("/dashboard");
       }
     } catch (err) {
-      console.log(err)
-      toast.error(err.data?.message, {
+      toast.error("Login failed", {
         duration: 4000,
         position: "top-right",
       });
